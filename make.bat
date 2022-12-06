@@ -9,12 +9,11 @@ set input_file=input.txt
 set output_file=output.txt
 set code_output_file=code_output.txt
 set template_file=template.cpp
-set cmake_dir=build
 set parser_breaker=PARSER_BREAKER
 
 set problem_path=%contest_number%\%problem_letter%.cpp
 set unique_build=%contest_number%%problem_letter%
-set build_path=%cmake_dir%\%unique_build%.exe
+set build_path=build\%unique_build%.exe
 
 if %3==gtc (goto gtc)
 if %3==run (goto run)
@@ -38,8 +37,8 @@ goto end
 -DCMAKE_BUILD_TYPE:STRING=Debug ^
 -DCMAKE_C_COMPILER:FILEPATH=C:\MinGW\bin\gcc.exe ^
 -DCMAKE_CXX_COMPILER:FILEPATH=C:\MinGW\bin\g++.exe ^
--S%CD% -B%CD%\%cmake_dir% -G "MinGW Makefiles"
-cmake --build %cmake_dir%
+-S%CD% -B%CD%\build -G "MinGW Makefiles"
+cmake --build build
 break>%code_output_file%
 python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker%
 goto end
