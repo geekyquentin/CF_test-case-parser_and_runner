@@ -47,6 +47,10 @@ Clone this repository and open it in VSCode. To clone, run
 
 `git clone https://github.com/geekyquentin/cf_test-case-parser_and_runner`
 
+[CMakeLists.txt](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/CMakeLists.txt) might be having some executables added, and it throws errors when it doesn't find its corresponding source files. To remove the added executables from the list, run
+
+`./make.bat setup`
+
 Open a problem in the [codeforces site](codeforces.com). From its URL, get the **contest number** and the **problem letter** (for example, in https://codeforces.com/problemset/problem/1681/A, **contest_number** is **1681** and **problem_letter** is **A**).
 
 ### Get test cases
