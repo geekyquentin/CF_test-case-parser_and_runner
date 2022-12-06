@@ -1,3 +1,17 @@
-build/
+.vscode
+
+# ignore created cpp files
+*/*.cpp
+
+# ignore all files in the cmake build directory
+*/*.exe
+*/.cmake
+*/CMakeFiles
+*/cmake_install.cmake
+*/CMakeCache.txt
+*/compile_commands.json
+*/Makefile
+
+# ignore input and output files
 input.txt
 *output.txt
