@@ -70,3 +70,9 @@ To perform a clean-up, run
 `./make.bat clean`
 
 **Function:** Deletes input and output files generated while parsing test cases and removes the CMake build directory
+
+---
+
+## Other points to note
+
+If the problem doesn't ask for the number of test cases as an input, edit the `main()` function accordingly
