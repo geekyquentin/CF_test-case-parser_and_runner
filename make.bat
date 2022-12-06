@@ -1,6 +1,7 @@
 @echo off
 
 if %1==clean (goto clean)
+if %1==setup (goto setup)
 
 set contest_number=%1
 set problem_letter=%2
@@ -41,6 +42,10 @@ goto end
 cmake --build build
 break>%code_output_file%
 python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker%
+goto end
+
+:setup
+python cmakelists_cleaner.py CMakeLists.txt
 goto end
 
 :clean
