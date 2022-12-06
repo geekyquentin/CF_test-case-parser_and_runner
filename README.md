@@ -43,7 +43,9 @@ This repository contains the following files:
 
 ## How to use
 
-Clone this repository: `git clone https://github.com/geekyquentin/cf_test-case-parser_and_runner` and open it in VSCode
+Clone this repository and open it in VSCode. To clone, run
+
+`git clone https://github.com/geekyquentin/cf_test-case-parser_and_runner`
 
 Open a problem in the [codeforces site](codeforces.com). From its URL, get the **contest number** and the **problem letter** (for example, in https://codeforces.com/problemset/problem/1681/A, **contest_number** is **1681** and **problem_letter** is **A**).
 
