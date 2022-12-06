@@ -87,4 +87,4 @@ To perform a clean-up, run
 
 If the problem doesn't ask for the number of test cases as an input, edit the `main()` function accordingly
 
-To disable [GitHub Copilot](https://github.com/features/copilot) for the `.cpp` files, add `"github.copilot.enable": { "cpp": false, }` to `.vscode/settings.json`
+To disable [GitHub Copilot](https://github.com/features/copilot) for the **.cpp** files, add `"github.copilot.enable": { "cpp": false, }` to **.vscode/settings.json**
