@@ -45,8 +45,8 @@ goto end
 -DCMAKE_BUILD_TYPE:STRING=Debug ^
 -DCMAKE_C_COMPILER:FILEPATH=C:\MinGW\bin\gcc.exe ^
 -DCMAKE_CXX_COMPILER:FILEPATH=C:\MinGW\bin\g++.exe ^
--S%CD% -B%CD%\build -G "MinGW Makefiles"
-cmake --build build
+-S%CD% -B%CD%\build -G "MinGW Makefiles" >NUL
+cmake --build build >NUL
 break>%code_output_file%
 python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker% %compare%
 goto end
