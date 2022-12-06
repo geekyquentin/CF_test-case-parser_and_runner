@@ -15,7 +15,7 @@ class problem_parser(HTMLParser):
         self.level = 0
 
     def handle_starttag(self, tag, attrs):
-        if tag == 'div' and ('class', 'sample-tests') in attrs:
+        if tag == "div" and ("class", "sample-tests") in attrs:
             self.atTests = True
 
         if self.atTests:
@@ -40,7 +40,7 @@ class problem_parser(HTMLParser):
 
     def handle_data(self, data):
         if self.reading:
-            self.buffer += data.strip() + '\n'
+            self.buffer += data.strip() + "\n"
 
 
 def main():
@@ -53,13 +53,13 @@ def main():
     parser = problem_parser()
     parser.feed(text.decode("utf-8"))
 
-    with open(input_file, 'w') as inputs:
+    with open(input_file, "w") as inputs:
         inputs.write(f"{len(parser.input)}\n")
         for test_case in parser.input:
             inputs.write(test_case)
             inputs.write(f"{parser_breaker}\n")
 
-    with open(output_file, 'w') as outputs:
+    with open(output_file, "w") as outputs:
         for test_case in parser.output:
             outputs.write(test_case)
 

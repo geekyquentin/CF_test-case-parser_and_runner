@@ -65,9 +65,13 @@ To get the input and output for every test case, run
 
 To run the program on every test case, run
 
-`./make.bat contest_number problem_letter run`
+`./make.bat contest_number problem_letter debug`
 
-**Function:** [make.bat](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/make.bat) generates the CMake build directory if it doesn't exist and builds all the executables that are added to the [CMakeLists.txt](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/CMakeLists.txt). [runner.py](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/runner.py) runs the executable in CMake build directory for every test case and gives the output.
+**Function:** [make.bat](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/make.bat) generates the CMake build directory if it doesn't exist and builds all the executables that are added to the [CMakeLists.txt](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/CMakeLists.txt). [runner.py](https://github.com/geekyquentin/cf_test-case-parser_and_runner/blob/master/runner.py) runs the executable in CMake build directory for every test case and writes the output to **code_output.txt**.
+
+To compare the outputs, use `run` instead of `debug`
+
+`./make.bat contest_number problem_letter run`
 
 ### Clean files
 

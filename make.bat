@@ -17,7 +17,14 @@ set unique_build=%contest_number%%problem_letter%
 set build_path=build\%unique_build%.exe
 
 if %3==gtc (goto gtc)
-if %3==run (goto run)
+if %3==debug (
+    set /a compare=0
+    goto run
+)
+if %3==run (
+    set /a compare=1
+    goto run
+)
 echo Usage: ./make.bat contest_number problem_letter ^[gtc^|run^|clean^] ra unga bunga
 goto end
 
@@ -41,7 +48,7 @@ goto end
 -S%CD% -B%CD%\build -G "MinGW Makefiles"
 cmake --build build
 break>%code_output_file%
-python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker%
+python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker% %compare%
 goto end
 
 :setup

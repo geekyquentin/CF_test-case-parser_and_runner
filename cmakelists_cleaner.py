@@ -4,11 +4,11 @@ from sys import argv
 def main():
     cmakelist = argv[1]
 
-    with open(cmakelist, 'r+') as f:
+    with open(cmakelist, "r+") as f:
         buffer = ""
         line = f.readline()
 
-        while 'add_executable(' not in line:
+        while line != "" and "add_executable(" not in line:
             buffer += line
             line = f.readline()
 
@@ -17,5 +17,5 @@ def main():
         f.truncate()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
