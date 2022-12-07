@@ -73,6 +73,12 @@ To compare the outputs, use `run` instead of `debug`
 
 `./make.bat contest_number problem_letter run`
 
+### Add to TODO list
+
+To add a problem to the TODO list, run
+
+`./make.bat contest_number problem_letter todo`
+
 ### Clean files
 
 To perform a clean-up, run

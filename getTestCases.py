@@ -44,10 +44,10 @@ class problem_parser(HTMLParser):
 
 
 def main():
-    url = f"https://codeforces.com/problemset/problem/{argv[1]}/{argv[2]}"
-    input_file = argv[3]
-    output_file = argv[4]
-    parser_breaker = argv[5]
+    url = argv[1]
+    input_file = argv[2]
+    output_file = argv[3]
+    parser_breaker = argv[4]
 
     text = urlopen(url).read()
     parser = problem_parser()

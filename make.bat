@@ -6,9 +6,11 @@ if %1==setup (goto setup)
 set contest_number=%1
 set problem_letter=%2
 
+set url=https://codeforces.com/problemset/problem/%contest_number%/%problem_letter%
 set input_file=input.txt
 set output_file=output.txt
 set code_output_file=code_output.txt
+set todo_list=todo.txt
 set template_file=template.cpp
 set parser_breaker=PARSER_BREAKER
 
@@ -17,6 +19,7 @@ set unique_build=%contest_number%%problem_letter%
 set build_path=build\%unique_build%.exe
 
 if %3==gtc (goto gtc)
+if %3==todo (goto todo)
 if %3==debug (
     set /a compare=0
     goto run
@@ -29,10 +32,11 @@ echo Usage: ./make.bat contest_number problem_letter ^[gtc^|run^|clean^] ra unga
 goto end
 
 :gtc
-python getTestCases.py %contest_number% %problem_letter% %input_file% %output_file% %parser_breaker%
+python getTestCases.py %url% %input_file% %output_file% %parser_breaker%
+break>%code_output_file%
 if not exist %contest_number% mkdir %contest_number%
 if not exist %problem_path% (
-    copy %template_file% %problem_path% >NUL
+    copy %template_file% %problem_path%
     echo add_executable^(%unique_build% %contest_number%/%problem_letter%.cpp^)>>.\CMakeLists.txt
 )
 code %problem_path%
@@ -45,10 +49,14 @@ goto end
 -DCMAKE_BUILD_TYPE:STRING=Debug ^
 -DCMAKE_C_COMPILER:FILEPATH=C:\MinGW\bin\gcc.exe ^
 -DCMAKE_CXX_COMPILER:FILEPATH=C:\MinGW\bin\g++.exe ^
--S%CD% -B%CD%\build -G "MinGW Makefiles" >NUL
-cmake --build build >NUL
+-S%CD% -B%CD%\build -G "MinGW Makefiles"
+cmake --build build
 break>%code_output_file%
 python runner.py %build_path% %input_file% %output_file% %code_output_file% %parser_breaker% %compare%
+goto end
+
+:todo
+echo %url%>>.\%todo_list%
 goto end
 
 :setup

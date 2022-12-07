@@ -1,6 +1,7 @@
 .vscode
-gitpush.bat
 */*.cpp
 build/*
 input.txt
 *output.txt
+todo.txt
+util.bat
