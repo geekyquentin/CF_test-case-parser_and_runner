@@ -25,7 +25,7 @@ if %3==run (
     set /a compare=1
     goto run
 )
-echo Usage: ./make.bat contest_number problem_letter ^[gtc^|run^|clean^] ra unga bunga
+echo Usage: ./make.bat contest_number problem_letter ^[gtc^|run^|debug^] ra unga bunga
 goto end
 
 :gtc
