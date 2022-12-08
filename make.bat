@@ -29,7 +29,7 @@ if %3==run (
     goto run
 )
 echo Usage: ./make.bat contest_number problem_letter ^[gtc^|run^|debug^|todo^]
-goto end
+goto eof
 
 :gtc
 break>%code_output_file%
@@ -40,7 +40,7 @@ if not exist %problem_file% (
     echo add_executable^(%unique_build% %contest_number%/%problem_letter%.cpp^)>>CMakeLists.txt
 )
 code %problem_file%
-goto end
+goto eof
 
 :run
 "C:/Program Files/CMake/bin/cmake.exe" ^
@@ -54,14 +54,21 @@ cmake --build build
 break>%code_output_file%
 python runner.py %executable% %input_file% %output_file% %code_output_file% %parser_breaker%
 if %compare%==1 (goto compare)
-goto end
+goto eof
 
 :compare
 fc %output_file% %code_output_file% >nul
+if errorlevel 2 (
+    echo. & echo Cannot find atleast one of the files
+    goto end_compare
+)
+if errorlevel 1 (
+    echo. & echo WA
+    goto end_compare
+)
 if errorlevel 0 (echo. & echo AC)
-if errorlevel 1 (echo. & echo WA)
-if errorlevel 2 (echo. & echo Cannot ^find atleast one of the files)
-goto end
+:end_compare
+goto eof
 
 :todo
 findstr /c:"%url%" %todo_list% >nul
@@ -71,15 +78,15 @@ if errorlevel 1 (
 ) else (
     echo. & echo Already in todo list
 )
-goto end
+goto eof
 
 :setup
 python cmakelists_cleaner.py CMakeLists.txt
-goto end
+goto eof
 
 :clean
 del input.txt *output.txt
 rd /s build
-goto end
+goto eof
 
-:end
+:eof
