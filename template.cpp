@@ -18,6 +18,14 @@ typedef vector<int> v32;
 #define fi first
 #define se second
 
+#define take(x) \
+    int x;      \
+    cin >> x;
+
+#define vec(a, n)     \
+    vector<int> a(n); \
+    for (int i = 0; i < n; i++) cin >> a[i];
+
 #define fast_cin()                    \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
@@ -31,10 +39,12 @@ void solve() {
 
 int main() {
     fast_cin();
-    ll t;
+
+    ll t = 1;
     cin >> t;
-    for (ll it = 1; it <= t; it++)
+    for (ll it = 1; it <= t; it++) {
         solve();
+    }
 
     return 0;
 }
