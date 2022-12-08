@@ -37,7 +37,7 @@ python getTestCases.py %url% %input_file% %output_file% %parser_breaker%
 if not exist %contest_number% mkdir %contest_number%
 if not exist %problem_file% (
     copy %template_file% %problem_file%
-    echo add_executable^(%unique_build% %contest_number%/%problem_letter%.cpp^)>>.\CMakeLists.txt
+    echo add_executable^(%unique_build% %contest_number%/%problem_letter%.cpp^)>>CMakeLists.txt
 )
 code %problem_file%
 goto end
@@ -58,18 +58,18 @@ goto end
 
 :compare
 fc %output_file% %code_output_file% >nul
-if errorlevel 0 (echo AC)
-if errorlevel 1 (echo WA)
-if errorlevel 2 (echo Cannot ^find atleast one of the files)
+if errorlevel 0 (echo. & echo AC)
+if errorlevel 1 (echo. & echo WA)
+if errorlevel 2 (echo. & echo Cannot ^find atleast one of the files)
 goto end
 
 :todo
 findstr /c:"%url%" %todo_list% >nul
 if errorlevel 1 (
     echo %url%>>%todo_list%
-    echo Added to todo list
+    echo. & echo Added to todo list
 ) else (
-    echo Already in todo list
+    echo. & echo Already in todo list
 )
 goto end
 
