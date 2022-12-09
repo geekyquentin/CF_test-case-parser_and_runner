@@ -1,18 +1,22 @@
 @echo off
 
 if %1==clean (goto clean)
-if %1==setup (goto setup)
+if %1==rex (goto rex)
 
 set contest_number=%1
 set problem_letter=%2
 
 set url=https://codeforces.com/problemset/problem/%contest_number%/%problem_letter%
+set parser_breaker=PARSER_BREAKER
+
+set fetcher=fetch_cases.py
+set exe_remover=remove_exe.py
+set runner=run.py
 set input_file=input.txt
 set output_file=output.txt
 set code_output_file=code_output.txt
 set todo_list=todo.txt
 set template_file=template.cpp
-set parser_breaker=PARSER_BREAKER
 
 set problem_file=%contest_number%\%problem_letter%.cpp
 set unique_build=%contest_number%%problem_letter%
@@ -33,7 +37,7 @@ goto eof
 
 :gtc
 break>%code_output_file%
-python getTestCases.py %url% %input_file% %output_file% %parser_breaker%
+python %fetcher% %url% %input_file% %output_file% %parser_breaker%
 if not exist %contest_number% mkdir %contest_number%
 if not exist %problem_file% (
     copy %template_file% %problem_file%
@@ -52,7 +56,7 @@ goto eof
 -S%CD% -B%CD%\build -G "MinGW Makefiles"
 cmake --build build
 break>%code_output_file%
-python runner.py %executable% %input_file% %output_file% %code_output_file% %parser_breaker%
+python %runner% %executable% %input_file% %output_file% %code_output_file% %parser_breaker%
 if %compare%==1 (goto compare)
 goto eof
 
@@ -73,15 +77,15 @@ goto eof
 :todo
 findstr /c:"%url%" %todo_list% >nul
 if errorlevel 1 (
-    echo %url%>>%todo_list%
+    echo %date%: %url%>>%todo_list%
     echo. & echo Added to todo list
 ) else (
     echo. & echo Already in todo list
 )
 goto eof
 
-:setup
-python cmakelists_cleaner.py CMakeLists.txt
+:rex
+python %exe_remover% CMakeLists.txt
 goto eof
 
 :clean
