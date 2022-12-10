@@ -54,7 +54,7 @@ goto eof
 -DCMAKE_C_COMPILER:FILEPATH=C:\MinGW\bin\gcc.exe ^
 -DCMAKE_CXX_COMPILER:FILEPATH=C:\MinGW\bin\g++.exe ^
 -S%CD% -B%CD%\build -G "MinGW Makefiles"
-cmake --build build
+cmake --build %CD%\build --target %unique_build%
 break>%code_output_file%
 python %runner% %executable% %input_file% %output_file% %code_output_file% %parser_breaker%
 if %compare%==1 (goto compare)
