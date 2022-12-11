@@ -56,22 +56,7 @@ goto eof
 -S%CD% -B%CD%\build -G "MinGW Makefiles"
 cmake --build %CD%\build --target %unique_build%
 break>%code_output_file%
-python %runner% %executable% %input_file% %output_file% %code_output_file% %parser_breaker%
-if %compare%==1 (goto compare)
-goto eof
-
-:compare
-fc %output_file% %code_output_file% >nul
-if errorlevel 2 (
-    echo. & echo Cannot find atleast one of the files
-    goto end_compare
-)
-if errorlevel 1 (
-    echo. & echo WA
-    goto end_compare
-)
-if errorlevel 0 (echo. & echo AC)
-:end_compare
+python %runner% %executable% %input_file% %output_file% %code_output_file% %parser_breaker% %compare%
 goto eof
 
 :todo
